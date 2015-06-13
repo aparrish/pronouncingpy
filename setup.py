@@ -29,7 +29,7 @@ setup(
     long_description=readme + '\n\n' + history,
     author="Allison Parrish",
     author_email='allison@decontextualize.com',
-    url='https://github.com/aparrish/pronouncing-py',
+    url='https://github.com/aparrish/pronouncingpy',
     packages=[
         'pronouncing',
     ],
