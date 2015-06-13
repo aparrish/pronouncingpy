@@ -24,7 +24,7 @@ test_requirements = [
 
 setup(
     name='pronouncing',
-    version='0.1.0',
+    version='0.1.1',
     description="A simple interface for the CMU pronouncing dictionary",
     long_description=readme + '\n\n' + history,
     author="Allison Parrish",
@@ -36,7 +36,6 @@ setup(
     package_dir={'pronouncing':
                  'pronouncing'},
     package_data={'pronouncing': ['cmudict-0.7b']},
-    include_package_data=True,
     install_requires=requirements,
     license="BSD",
     zip_safe=True,

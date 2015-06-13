@@ -4,7 +4,7 @@ from pkg_resources import resource_stream
 
 __author__ = 'Allison Parrish'
 __email__ = 'allison@decontextualize.com'
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 
 pronunciations = None
 
