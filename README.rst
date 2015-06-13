@@ -1,8 +1,8 @@
 pronouncing
 ===========
 
-.. image:: https://img.shields.io/travis/aparrish/pronouncing.svg
-        :target: https://travis-ci.org/aparrish/pronouncing
+.. image:: https://img.shields.io/travis/aparrish/pronouncingpy.svg
+        :target: https://travis-ci.org/aparrish/pronouncingpy
 
 .. image:: https://img.shields.io/pypi/v/pronouncing.svg
         :target: https://pypi.python.org/pypi/pronouncing
