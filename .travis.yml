@@ -9,6 +9,9 @@ python:
   - "2.6"
   - "pypy"
 
+# Use container-based infrastructure
+sudo: false
+
 # command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
 install: pip install -r requirements.txt
 
