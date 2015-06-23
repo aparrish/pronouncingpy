@@ -19,12 +19,13 @@ def parse_cmu(cmufh):
     :returns: a list of 2-tuples pairing a word with its phones (as a string)
     """
     pronunciations = list()
+    regexp = re.compile(r'\(\d\)$')
     for line in cmufh:
         line = line.strip().decode('latin1')
         if line.startswith(';'):
             continue
         word, phones = line.split("  ")
-        word = re.sub(r'\(\d\)$', '', word.lower())
+        word = regexp.sub('', word.lower())
         pronunciations.append((word.lower(), phones))
     return pronunciations
 
@@ -167,8 +168,9 @@ def search(pattern):
     """
     init_cmu()
     matches = list()
+    regexp = re.compile(r"\b" + pattern + r"\b")
     for word, phones in pronunciations:
-        if re.search(r"\b" + pattern + r"\b", phones):
+        if regexp.search(phones):
             matches.append(word)
     return matches
 
@@ -191,8 +193,9 @@ def search_stresses(pattern):
     """
     init_cmu()
     matches = list()
+    regexp = re.compile(pattern)
     for word, phones in pronunciations:
-        if re.search(pattern, stresses(phones)):
+        if regexp.search(stresses(phones)):
             matches.append(word)
     return matches
 
