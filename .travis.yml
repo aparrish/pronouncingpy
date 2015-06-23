@@ -3,14 +3,31 @@
 language: python
 
 python:
+  - "pypy3"
+  - "pypy"
   - "3.4"
   - "3.3"
+  - "3.2"
   - "2.7"
   - "2.6"
-  - "pypy"
+
+# Use container-based infrastructure
+sudo: false
 
 # command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
-install: pip install -r requirements.txt
+install:
+  - pip install -r requirements.txt
+  - pip install coverage
 
 # command to run tests, e.g. python setup.py test
-script: python setup.py test
+script: coverage run --source pronouncing setup.py test --verbose
+
+after_success:
+- pip install coveralls
+- coveralls # send coverage to coveralls.io
+
+after_script:
+- coverage report              # show coverage on cmd line
+- pip install pep8 pyflakes
+- pep8 --statistics --count .  # static analysis
+- pyflakes . | tee >(wc -l)    # static analysis
