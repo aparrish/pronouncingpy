@@ -141,13 +141,11 @@ def rhyming_part(phones):
     :param phones: a string containing space-separated CMUdict phones
     :returns: a string with just the "rhyming part" of those phones
     """
-    idx = 0
     phones_list = phones.split()
-    for i in reversed(range(0, len(phones_list))):
-        if phones_list[i][-1] in ('1', '2'):
-            idx = i
-            break
-    return ' '.join(phones_list[idx:])
+    for i in range(len(phones_list) - 1, 0, -1):
+        if phones_list[i][-1] in '12':
+            return ' '.join(phones_list[i:])
+    return phones
 
 
 def search(pattern):
