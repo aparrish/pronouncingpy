@@ -19,14 +19,12 @@ def parse_cmu(cmufh):
     :returns: a list of 2-tuples pairing a word with its phones (as a string)
     """
     pronunciations = list()
-    regexp = re.compile(r'\(\d\)$')
     for line in cmufh:
         line = line.strip().decode('latin1')
         if line.startswith(';'):
             continue
         word, phones = line.split("  ")
-        word = regexp.sub('', word.lower())
-        pronunciations.append((word.lower(), phones))
+        pronunciations.append((word.rstrip('(0123456789)').lower(), phones))
     return pronunciations
 
 
