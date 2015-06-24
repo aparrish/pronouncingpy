@@ -85,11 +85,9 @@ def phones_for_word(find):
     :returns: a list of phone strings that correspond to that word.
     """
     init_cmu()
-    matches = list()
-    for word, phones in pronunciations:
-        if word == find:
-            matches.append(phones)
-    return matches
+    return [phones
+            for word, phones in pronunciations
+            if word == find]
 
 
 def stresses(s):
@@ -165,12 +163,10 @@ def search(pattern):
     :returns: a list of matching words
     """
     init_cmu()
-    matches = list()
     regexp = re.compile(r"\b" + pattern + r"\b")
-    for word, phones in pronunciations:
-        if regexp.search(phones):
-            matches.append(word)
-    return matches
+    return [word
+            for word, phones in pronunciations
+            if regexp.search(phones)]
 
 
 def search_stresses(pattern):
@@ -190,12 +186,10 @@ def search_stresses(pattern):
     :returns: a list of matching words
     """
     init_cmu()
-    matches = list()
     regexp = re.compile(pattern)
-    for word, phones in pronunciations:
-        if regexp.search(stresses(phones)):
-            matches.append(word)
-    return matches
+    return [word
+            for word, phones in pronunciations
+            if regexp.search(stresses(phones))]
 
 
 def rhymes(word):
