@@ -209,8 +209,7 @@ def rhymes(word):
     :returns: a list of rhyming words
     """
     all_rhymes = list()
-    all_phones = phones_for_word(word)
-    for phones_str in all_phones:
+    for phones_str in phones_for_word(word):
         part = rhyming_part(phones_str)
         rhymes = search(part + "$")
         all_rhymes.extend(rhymes)
