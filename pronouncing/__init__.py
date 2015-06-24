@@ -26,7 +26,7 @@ def parse_cmu(cmufh):
             continue
         word, phones = line.split("  ")
         word = regexp.sub('', word.lower())
-        pronunciations.append((word.lower(), phones))
+        pronunciations.append((word, phones))
     return pronunciations
 
 
@@ -66,7 +66,7 @@ def syllable_count(phones):
     :param phones: a string containing space-separated CMUdict phones
     :returns: integer count of syllables in list of phones
     """
-    return sum([phones.count(i) for i in '012'])
+    return len(stresses(phones))
 
 
 def phones_for_word(find):
@@ -85,11 +85,9 @@ def phones_for_word(find):
     :returns: a list of phone strings that correspond to that word.
     """
     init_cmu()
-    matches = list()
-    for word, phones in pronunciations:
-        if word == find:
-            matches.append(phones)
-    return matches
+    return [phones
+            for word, phones in pronunciations
+            if word == find]
 
 
 def stresses(s):
@@ -141,13 +139,11 @@ def rhyming_part(phones):
     :param phones: a string containing space-separated CMUdict phones
     :returns: a string with just the "rhyming part" of those phones
     """
-    idx = 0
     phones_list = phones.split()
-    for i in reversed(range(0, len(phones_list))):
-        if phones_list[i][-1] in ('1', '2'):
-            idx = i
-            break
-    return ' '.join(phones_list[idx:])
+    for i in range(len(phones_list) - 1, 0, -1):
+        if phones_list[i][-1] in '12':
+            return ' '.join(phones_list[i:])
+    return phones
 
 
 def search(pattern):
@@ -167,12 +163,10 @@ def search(pattern):
     :returns: a list of matching words
     """
     init_cmu()
-    matches = list()
     regexp = re.compile(r"\b" + pattern + r"\b")
-    for word, phones in pronunciations:
-        if regexp.search(phones):
-            matches.append(word)
-    return matches
+    return [word
+            for word, phones in pronunciations
+            if regexp.search(phones)]
 
 
 def search_stresses(pattern):
@@ -192,12 +186,10 @@ def search_stresses(pattern):
     :returns: a list of matching words
     """
     init_cmu()
-    matches = list()
     regexp = re.compile(pattern)
-    for word, phones in pronunciations:
-        if regexp.search(stresses(phones)):
-            matches.append(word)
-    return matches
+    return [word
+            for word, phones in pronunciations
+            if regexp.search(stresses(phones))]
 
 
 def rhymes(word):
@@ -217,8 +209,7 @@ def rhymes(word):
     :returns: a list of rhyming words
     """
     all_rhymes = list()
-    all_phones = phones_for_word(word)
-    for phones_str in all_phones:
+    for phones_str in phones_for_word(word):
         part = rhyming_part(phones_str)
         rhymes = search(part + "$")
         all_rhymes.extend(rhymes)
