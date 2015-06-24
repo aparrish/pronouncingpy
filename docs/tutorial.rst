@@ -118,7 +118,7 @@ phones::
     >>> import pronouncing
     >>> phones_list = pronouncing.phones_for_word("snappiest")
     >>> pronouncing.stresses(phones_list[0])
-    u'0102'
+    u'102'
 
 A "stress pattern" is a string that contains only the stress values from a
 sequence of phones. (The numbers indicate the level of stress: ``1`` for
