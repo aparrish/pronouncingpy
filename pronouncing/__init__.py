@@ -66,7 +66,7 @@ def syllable_count(phones):
     :param phones: a string containing space-separated CMUdict phones
     :returns: integer count of syllables in list of phones
     """
-    return sum([phones.count(i) for i in '012'])
+    return len(stresses(phones))
 
 
 def phones_for_word(find):
