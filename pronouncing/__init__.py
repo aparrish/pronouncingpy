@@ -26,7 +26,7 @@ def parse_cmu(cmufh):
             continue
         word, phones = line.split("  ")
         word = regexp.sub('', word.lower())
-        pronunciations.append((word.lower(), phones))
+        pronunciations.append((word, phones))
     return pronunciations
 
 
