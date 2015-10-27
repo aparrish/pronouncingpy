@@ -2,6 +2,7 @@ from __future__ import print_function
 import re
 from pkg_resources import resource_stream
 from collections import defaultdict
+from six import iteritems
 
 __author__ = 'Allison Parrish'
 __email__ = 'allison@decontextualize.com'
@@ -162,7 +163,7 @@ def search(pattern):
     init_cmu()
     regexp = re.compile(r"\b" + pattern + r"\b")
     words = []
-    for word, phonelist in pronunciations.iteritems():
+    for word, phonelist in iteritems(pronunciations):
         for phones in phonelist:
             if regexp.search(phones):
                 words.append(word)
@@ -188,7 +189,7 @@ def search_stresses(pattern):
     init_cmu()
     regexp = re.compile(pattern)
     words = []
-    for word, phonelist in pronunciations.iteritems():
+    for word, phonelist in iteritems(pronunciations):
         for phones in phonelist:
             if regexp.search(stresses(phones)):
                 words.append(word)
