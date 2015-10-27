@@ -13,7 +13,7 @@ ADOLESCENT(1)  AE2 D OW0 L EH1 S AH0 N T
         cmufh = io.BytesIO(test_str)
         pronunciations = pronouncing.parse_cmu(cmufh)
         self.assertTrue(len(pronunciations) > 0)
-        matches = [x for x in pronunciations if x[0] == 'adolescent']
+        matches = pronunciations['adolescent']
         self.assertEqual(len(matches), 2)
 
     def test_syllable_count(self):
