@@ -162,7 +162,7 @@ def search(pattern):
     init_cmu()
     regexp = re.compile(r"\b" + pattern + r"\b")
     result = set()
-    for word, phones_list in pronunciations.iteritems():
+    for word, phones_list in pronunciations.items():
         for phones in phones_list:
             if regexp.search(phones):
                 result.add(word)
@@ -188,7 +188,7 @@ def search_stresses(pattern):
     init_cmu()
     regexp = re.compile(pattern)
     result = set()
-    for word, phones_list in pronunciations.iteritems():
+    for word, phones_list in pronunciations.items():
         for phones in phones_list:
             if regexp.search(stresses(phones)):
                 result.add(word)
