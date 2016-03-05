@@ -13,7 +13,7 @@ ADOLESCENT(1)  AE2 D OW0 L EH1 S AH0 N T
         cmufh = io.BytesIO(test_str)
         pronunciations = pronouncing.parse_cmu(cmufh)
         self.assertTrue(len(pronunciations) > 0)
-        matches = [x for x in pronunciations if x[0] == 'adolescent']
+        matches = pronunciations.get('adolescent')
         self.assertEqual(len(matches), 2)
 
     def test_syllable_count(self):
@@ -40,20 +40,20 @@ ADOLESCENT(1)  AE2 D OW0 L EH1 S AH0 N T
     def test_search(self):
         matches = pronouncing.search('^S K L')
         self.assertEqual(matches,
-                         ['sclafani', 'scleroderma', 'sclerosis', 'sklar',
-                             'sklenar'])
+                         set(['sclafani', 'scleroderma', 'sclerosis', 'sklar',
+                              'sklenar']))
         matches = pronouncing.search('IH. \w* IH. \w* IH. \w* IH.')
         self.assertEqual(matches,
-                         ['definitive', 'definitively', 'diminishes',
-                             'diminishing', 'elicited', 'miscibility',
-                             'primitivistic', 'privileges'])
+                         set(['definitive', 'definitively', 'diminishes',
+                              'diminishing', 'elicited', 'miscibility',
+                              'primitivistic', 'privileges']))
 
     def test_rhymes(self):
         rhymes = pronouncing.rhymes("sleekly")
-        expected = [
+        expected = set([
             'beakley', 'biweekly', 'bleakley', 'meekly', 'obliquely',
             'steakley', 'szekely', 'uniquely', 'weakley', 'weakly',
-            'weekley', 'weekly', 'yeakley']
+            'weekley', 'weekly', 'yeakley'])
         self.assertEqual(expected, rhymes)
 
     def test_stresses(self):
@@ -70,12 +70,12 @@ ADOLESCENT(1)  AE2 D OW0 L EH1 S AH0 N T
         words = pronouncing.search_stresses('^000100$')
         self.assertEqual(
             words,
-            ['phytogeography', 'uninterruptible', 'uninterruptible',
-                'variability'])
+            set(['phytogeography', 'uninterruptible', 'uninterruptible',
+                 'variability']))
         words = pronouncing.search_stresses('^[12]0[12]0[12]0[12]$')
         self.assertEqual(
             words,
-            ['dideoxycytidine', 'homosexuality', 'hypersensitivity'])
+            set(['dideoxycytidine', 'homosexuality', 'hypersensitivity']))
 
 if __name__ == '__main__':
     unittest.main()
