@@ -47,7 +47,7 @@ coverage:
 	coverage run --source pronouncing setup.py test
 	coverage report -m
 	coverage html
-	open htmlcov/index.html
+	python -m webbrowser htmlcov/index.html
 
 docs:
 	rm -f docs/pronouncingpy.rst
@@ -55,7 +55,7 @@ docs:
 	sphinx-apidoc -o docs/ pronouncing
 	$(MAKE) -C docs clean
 	$(MAKE) -C docs html
-	open docs/_build/html/index.html
+	python -m webbrowser docs/_build/html/index.html
 
 release: clean
 	python setup.py sdist upload
