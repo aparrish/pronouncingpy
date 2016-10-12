@@ -18,7 +18,10 @@ sudo: false
 # command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
 install:
   - pip install -r requirements.txt
-  - pip install coverage
+
+  # Coverage 4.0 doesn't support Python 3.2
+  - if [ "$TRAVIS_PYTHON_VERSION" == "3.2" ]; then pip install coverage==3.7.1; fi
+  - if [ "$TRAVIS_PYTHON_VERSION" != "3.2" ]; then pip install coverage; fi
 
 # command to run tests, e.g. python setup.py test
 script: coverage run --source pronouncing setup.py test --verbose
