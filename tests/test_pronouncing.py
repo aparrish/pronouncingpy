@@ -36,6 +36,8 @@ ADOLESCENT(1)  AE2 D OW0 L EH1 S AH0 N T
         self.assertEqual(part, "IY1 P ER0")
         part = pronouncing.rhyming_part("S L IY1 P AH0 L IY0")
         self.assertEqual(part, "IY1 P AH0 L IY0")
+        part = pronouncing.rhyming_part("M ER0 M AE0 N S K")
+        self.assertEqual(part, "M ER0 M AE0 N S K")
 
     def test_search(self):
         matches = pronouncing.search('^S K L')
