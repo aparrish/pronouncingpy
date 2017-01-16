@@ -1,6 +1,7 @@
 from __future__ import print_function
 import re
 from pkg_resources import resource_stream
+import collections
 
 __author__ = 'Allison Parrish'
 __email__ = 'allison@decontextualize.com'
@@ -18,13 +19,13 @@ def parse_cmu(cmufh):
     :param cmufh: a filehandle with CMUdict-formatted data
     :returns: a list of 2-tuples pairing a word with its phones (as a string)
     """
-    pronunciations = list()
+    pronunciations = collections.defaultdict(list)
     for line in cmufh:
         line = line.strip().decode('latin1')
         if line.startswith(';'):
             continue
         word, phones = line.split("  ")
-        pronunciations.append((word.rstrip('(0123456789)').lower(), phones))
+        pronunciations[word.rstrip('(0123456789)').lower()].append(phones)
     return pronunciations
 
 
@@ -83,9 +84,7 @@ def phones_for_word(find):
     :returns: a list of phone strings that correspond to that word.
     """
     init_cmu()
-    return [phones
-            for word, phones in pronunciations
-            if word == find]
+    return pronunciations.get(find, [])
 
 
 def stresses(s):
@@ -162,9 +161,12 @@ def search(pattern):
     """
     init_cmu()
     regexp = re.compile(r"\b" + pattern + r"\b")
-    return [word
-            for word, phones in pronunciations
-            if regexp.search(phones)]
+    result = set()
+    for word, phones_list in pronunciations.items():
+        for phones in phones_list:
+            if regexp.search(phones):
+                result.add(word)
+    return result
 
 
 def search_stresses(pattern):
@@ -185,9 +187,12 @@ def search_stresses(pattern):
     """
     init_cmu()
     regexp = re.compile(pattern)
-    return [word
-            for word, phones in pronunciations
-            if regexp.search(stresses(phones))]
+    result = set()
+    for word, phones_list in pronunciations.items():
+        for phones in phones_list:
+            if regexp.search(stresses(phones)):
+                result.add(word)
+    return result
 
 
 def rhymes(word):
@@ -211,4 +216,4 @@ def rhymes(word):
         part = rhyming_part(phones_str)
         rhymes = search(part + "$")
         all_rhymes.extend(rhymes)
-    return [r for r in all_rhymes if r != word]
+    return set(r for r in all_rhymes if r != word)
