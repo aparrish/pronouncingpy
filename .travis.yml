@@ -27,6 +27,11 @@ install:
 script: coverage run --source pronouncing setup.py test --verbose
 
 after_success:
+  # Coveralls 1.0b1 doesn't support Python 3.2
+  # Coveralls needs Requests, where 2.11.0 doesn't support Python 3.2
+- if [ "$TRAVIS_PYTHON_VERSION" == "3.2" ]; then pip install requests==2.10.0; fi
+- if [ "$TRAVIS_PYTHON_VERSION" == "3.2" ]; then pip install coveralls==1.0a2; fi
+- if [ "$TRAVIS_PYTHON_VERSION" != "3.2" ]; then pip install coveralls; fi
 - pip install coveralls
 - coveralls # send coverage to coveralls.io
 
