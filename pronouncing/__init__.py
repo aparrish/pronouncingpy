@@ -1,6 +1,8 @@
 from __future__ import print_function
 import re
 from pkg_resources import resource_stream
+from collections import defaultdict
+from six import iteritems
 
 __author__ = 'Allison Parrish'
 __email__ = 'allison@decontextualize.com'
@@ -18,13 +20,13 @@ def parse_cmu(cmufh):
     :param cmufh: a filehandle with CMUdict-formatted data
     :returns: a list of 2-tuples pairing a word with its phones (as a string)
     """
-    pronunciations = list()
+    pronunciations = defaultdict(list)
     for line in cmufh:
         line = line.strip().decode('latin1')
         if line.startswith(';'):
             continue
         word, phones = line.split("  ")
-        pronunciations.append((word.rstrip('(0123456789)').lower(), phones))
+        pronunciations[word.rstrip('(0123456789)').lower()].append(phones)
     return pronunciations
 
 
@@ -83,9 +85,7 @@ def phones_for_word(find):
     :returns: a list of phone strings that correspond to that word.
     """
     init_cmu()
-    return [phones
-            for word, phones in pronunciations
-            if word == find]
+    return pronunciations[find][:]
 
 
 def stresses(s):
@@ -162,9 +162,12 @@ def search(pattern):
     """
     init_cmu()
     regexp = re.compile(r"\b" + pattern + r"\b")
-    return [word
-            for word, phones in pronunciations
-            if regexp.search(phones)]
+    words = []
+    for word, phonelist in iteritems(pronunciations):
+        for phones in phonelist:
+            if regexp.search(phones):
+                words.append(word)
+    return sorted(words)
 
 
 def search_stresses(pattern):
@@ -185,9 +188,13 @@ def search_stresses(pattern):
     """
     init_cmu()
     regexp = re.compile(pattern)
-    return [word
-            for word, phones in pronunciations
-            if regexp.search(stresses(phones))]
+    words = []
+    for word, phonelist in iteritems(pronunciations):
+        for phones in phonelist:
+            if regexp.search(stresses(phones)):
+                words.append(word)
+    return sorted(words)
+
 
 
 def rhymes(word):
