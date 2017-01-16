@@ -4,6 +4,9 @@ pronouncing
 .. image:: https://img.shields.io/travis/aparrish/pronouncingpy.svg
         :target: https://travis-ci.org/aparrish/pronouncingpy
 
+.. image:: https://coveralls.io/repos/github/aparrish/pronouncingpy/badge.svg?branch=master
+        :target: https://coveralls.io/github/aparrish/pronouncingpy?branch=master
+
 .. image:: https://img.shields.io/pypi/v/pronouncing.svg
         :target: https://pypi.python.org/pypi/pronouncing
 
