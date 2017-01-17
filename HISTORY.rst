@@ -3,6 +3,12 @@
 History
 =======
 
+0.1.3 (2017-01-17)
+------------------
+
+* Various tweaks and performance improvements.
+
+
 0.1.2 (2015-06-23)
 ------------------
 
