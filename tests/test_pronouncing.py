@@ -30,6 +30,9 @@ ADOLESCENT(1)  AE2 D OW0 L EH1 S AH0 N T
         phones = pronouncing.phones_for_word("conflicts")
         self.assertEqual(len(phones), 4)
         self.assertEqual(phones[0], "K AH0 N F L IH1 K T S")
+        # not in the dictionary (presumably)
+        phones = pronouncing.phones_for_word("asdfasdfasdf")
+        self.assertEqual(phones, [])
 
     def test_rhyming_part(self):
         part = pronouncing.rhyming_part("S L IY1 P ER0")
