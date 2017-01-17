@@ -1,12 +1,14 @@
 from __future__ import print_function
 import re
 from pkg_resources import resource_stream
+import collections
 
 __author__ = 'Allison Parrish'
 __email__ = 'allison@decontextualize.com'
 __version__ = '0.1.2'
 
 pronunciations = None
+lookup = None
 
 
 def parse_cmu(cmufh):
@@ -40,12 +42,15 @@ def init_cmu(filehandle=None):
     :param filehandle: a filehandle with CMUdict-formatted data
     :returns: None
     """
-    global pronunciations
+    global pronunciations, lookup
     if pronunciations is None:
         if filehandle is None:
             filehandle = resource_stream(__name__, 'cmudict-0.7b')
         pronunciations = parse_cmu(filehandle)
         filehandle.close()
+        lookup = collections.defaultdict(list)
+        for word, phones in pronunciations:
+            lookup[word].append(phones)
 
 
 def syllable_count(phones):
@@ -83,9 +88,7 @@ def phones_for_word(find):
     :returns: a list of phone strings that correspond to that word.
     """
     init_cmu()
-    return [phones
-            for word, phones in pronunciations
-            if word == find]
+    return lookup.get(find, [])
 
 
 def stresses(s):
