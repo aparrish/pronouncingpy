@@ -63,7 +63,7 @@ def syllable_count(phones):
 
         >>> import pronouncing
         >>> phones = pronouncing.phones_for_word("literally")
-        >>> pronouncing.syllable_count(phones)
+        >>> pronouncing.syllable_count(phones[0])
         4
 
     :param phones: a string containing space-separated CMUdict phones
