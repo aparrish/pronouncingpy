@@ -134,7 +134,7 @@ def rhyming_part(phones):
 
         >>> import pronouncing
         >>> phones = pronouncing.phones_for_word("purple")
-        >>> pronouncing.rhyming_part(phones)
+        >>> pronouncing.rhyming_part(phones[0])
         u'ER1 P AH0 L'
 
     :param phones: a string containing space-separated CMUdict phones
