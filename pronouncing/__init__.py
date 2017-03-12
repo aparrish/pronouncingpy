@@ -96,7 +96,7 @@ def syllable_count(phones):
 
         >>> import pronouncing
         >>> phones = pronouncing.phones_for_word("literally")
-        >>> pronouncing.syllable_count(phones[0])
+        >>> pronouncing.syllable_count(phones)
         4
 
     :param phones: a string containing space-separated CMUdict phones
@@ -167,7 +167,7 @@ def rhyming_part(phones):
 
         >>> import pronouncing
         >>> phones = pronouncing.phones_for_word("purple")
-        >>> pronouncing.rhyming_part(phones[0])
+        >>> pronouncing.rhyming_part(phones)
         u'ER1 P AH0 L'
 
     :param phones: a string containing space-separated CMUdict phones
