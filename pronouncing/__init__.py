@@ -9,6 +9,7 @@ __version__ = '0.1.3'
 
 pronunciations = None
 lookup = None
+rhymeDict = None
 
 
 def parse_cmu(cmufh):
@@ -42,7 +43,7 @@ def init_cmu(filehandle=None):
     :param filehandle: a filehandle with CMUdict-formatted data
     :returns: None
     """
-    global pronunciations, lookup
+    global pronunciations, lookup, rhymeDict
     if pronunciations is None:
         if filehandle is None:
             filehandle = resource_stream(__name__, 'cmudict-0.7b')
@@ -51,6 +52,38 @@ def init_cmu(filehandle=None):
         lookup = collections.defaultdict(list)
         for word, phones in pronunciations:
             lookup[word].append(phones)
+
+        rhymeDict = collections.defaultdict(list)
+        for word, phones in pronunciations:
+            rp = rhyming_part(phones)
+            if rp is not None:
+                rhymeDict[rhyming_part(phones)].append(word)
+
+def rhymesFast(word):
+    """Get words rhyming with a given word.
+
+    This function may return an empty list if no rhyming words are found in
+    the dictionary, or if the word you pass to the function is itself not
+    found in the dictionary.
+
+    .. doctest::
+
+        >>> import pronouncing
+        >>> pronouncing.rhymesFast("conditioner")
+        [u'commissioner', u'parishioner', u'petitioner', u'practitioner']
+
+    :param word: a word
+    :returns: a list of rhyming words
+    """
+    phones = phones_for_word(word)
+    if not phones == []:
+        rd = rhymeDict[rhyming_part(phones[0])]
+        if word in rd:
+            rd.pop(rd.index(word))
+        return rd
+    else:
+        return []
+
 
 
 def syllable_count(phones):
