@@ -5,10 +5,11 @@ import collections
 
 __author__ = 'Allison Parrish'
 __email__ = 'allison@decontextualize.com'
-__version__ = '0.1.3'
+__version__ = '0.1.4'
 
 pronunciations = None
 lookup = None
+rhyme_lookup = None
 
 
 def parse_cmu(cmufh):
@@ -42,7 +43,7 @@ def init_cmu(filehandle=None):
     :param filehandle: a filehandle with CMUdict-formatted data
     :returns: None
     """
-    global pronunciations, lookup
+    global pronunciations, lookup, rhyme_lookup
     if pronunciations is None:
         if filehandle is None:
             filehandle = resource_stream(__name__, 'cmudict-0.7b')
@@ -51,6 +52,11 @@ def init_cmu(filehandle=None):
         lookup = collections.defaultdict(list)
         for word, phones in pronunciations:
             lookup[word].append(phones)
+        rhyme_lookup = collections.defaultdict(list)
+        for word, phones in pronunciations:
+            rp = rhyming_part(phones)
+            if rp is not None:
+                rhyme_lookup[rp].append(word)
 
 
 def syllable_count(phones):
@@ -209,9 +215,9 @@ def rhymes(word):
     :param word: a word
     :returns: a list of rhyming words
     """
-    all_rhymes = list()
-    for phones_str in phones_for_word(word):
-        part = rhyming_part(phones_str)
-        rhymes = search(part + "$")
-        all_rhymes.extend(rhymes)
-    return [r for r in all_rhymes if r != word]
+    phones = phones_for_word(word)
+    if len(phones) > 0:
+        return [w for w in rhyme_lookup.get(rhyming_part(phones[0]), []) \
+                if w != word]
+    else:
+        return []
