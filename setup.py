@@ -24,7 +24,7 @@ test_requirements = [
 
 setup(
     name='pronouncing',
-    version='0.1.4',
+    version='0.1.5',
     description="A simple interface for the CMU pronouncing dictionary",
     long_description=readme + '\n\n' + history,
     author="Allison Parrish",

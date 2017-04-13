@@ -5,7 +5,7 @@ import collections
 
 __author__ = 'Allison Parrish'
 __email__ = 'allison@decontextualize.com'
-__version__ = '0.1.4'
+__version__ = '0.1.5'
 
 pronunciations = None
 lookup = None
