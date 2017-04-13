@@ -3,6 +3,13 @@
 History
 =======
 
+0.1.4 (2017-04-12)
+------------------
+
+* Improved performance when retrieving rhyming words. (Based on pull request
+  proposed by `WillPiledriver <https://github.com/WillPiledriver>`_.)
+
+
 0.1.3 (2017-01-17)
 ------------------
 

@@ -60,6 +60,12 @@ ADOLESCENT(1)  AE2 D OW0 L EH1 S AH0 N T
             'steakley', 'szekely', 'uniquely', 'weakley', 'weakly',
             'weekley', 'weekly', 'yeakley']
         self.assertEqual(expected, rhymes)
+        # ensure correct behavior for words that don't rhyme
+        rhymes = pronouncing.rhymes("orange")
+        self.assertEqual([], rhymes)
+        # ensure correct behavior for OOV words
+        rhymes = pronouncing.rhymes("qwerasdfzxcv")
+        self.assertEqual([], rhymes)
 
     def test_stresses(self):
         stresses = pronouncing.stresses('P ER0 M IH1 T')
