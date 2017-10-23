@@ -27,7 +27,7 @@ def parse_cmu(cmufh):
         if line.startswith(';'):
             continue
         word, phones = line.split("  ")
-        pronunciations.append((word.rstrip('(0123456789)').lower(), phones))
+        pronunciations.append((word.split('(', 1)[0].lower(), phones))
     return pronunciations
 
 
