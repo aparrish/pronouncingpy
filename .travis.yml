@@ -26,7 +26,7 @@ after_success:
 - coveralls # send coverage to coveralls.io
 
 after_script:
-- coverage report              # show coverage on cmd line
-- pip install pep8 pyflakes
-- pep8 --statistics --count .  # static analysis
-- pyflakes . | tee >(wc -l)    # static analysis
+- coverage report                     # show coverage on cmd line
+- pip install pycodestyle pyflakes
+- pyflakes . | tee >(wc -l)           # static analysis
+- pycodestyle --statistics --count .  # static analysis

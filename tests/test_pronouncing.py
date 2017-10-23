@@ -88,5 +88,6 @@ ADOLESCENT(1)  AE2 D OW0 L EH1 S AH0 N T
             words,
             ['dideoxycytidine', 'homosexuality', 'hypersensitivity'])
 
+
 if __name__ == '__main__':
     unittest.main()
