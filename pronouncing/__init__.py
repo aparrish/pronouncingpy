@@ -217,7 +217,7 @@ def rhymes(word):
     """
     phones = phones_for_word(word)
     if len(phones) > 0:
-        return [w for w in rhyme_lookup.get(rhyming_part(phones[0]), []) \
+        return [w for w in rhyme_lookup.get(rhyming_part(phones[0]), [])
                 if w != word]
     else:
         return []
