@@ -19,7 +19,9 @@ install:
   - pip install coverage
 
 # command to run tests, e.g. python setup.py test
-script: coverage run --source pronouncing setup.py test --verbose
+script:
+  - coverage run --source pronouncing setup.py test --verbose
+  - python -m doctest -v pronouncing/__init__.py
 
 after_success:
 - pip install coveralls
