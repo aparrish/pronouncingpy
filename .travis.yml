@@ -21,7 +21,7 @@ install:
 # command to run tests, e.g. python setup.py test
 script:
   - coverage run --source pronouncing setup.py test --verbose
-  - python -m doctest -v pronouncing/__init__.py
+  - if [[ $TRAVIS_PYTHON_VERSION == 3* ]]; then python -m doctest pronouncing/__init__.py; fi
 
 after_success:
 - pip install coveralls

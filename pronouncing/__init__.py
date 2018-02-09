@@ -88,7 +88,7 @@ def phones_for_word(find):
 
         >>> import pronouncing
         >>> pronouncing.phones_for_word("permit")
-        [u'P ER0 M IH1 T', u'P ER1 M IH2 T']
+        ['P ER0 M IH1 T', 'P ER1 M IH2 T']
 
     :param find: a word to find in CMUdict.
     :returns: a list of phone strings that correspond to that word.
@@ -106,7 +106,7 @@ def stresses(s):
 
         >>> import pronouncing
         >>> pronouncing.stresses(pronouncing.phones_for_word('obsequious')[0])
-        u'0100'
+        '0100'
 
     :param s: a string of CMUdict phones
     :returns: string of just the stresses
@@ -121,7 +121,7 @@ def stresses_for_word(find):
 
         >>> import pronouncing
         >>> pronouncing.stresses_for_word('permit')
-        [u'01', u'12']
+        ['01', '12']
 
     :param find: a word to find
     :returns: a list of possible stress patterns for the given word.
@@ -141,7 +141,7 @@ def rhyming_part(phones):
         >>> import pronouncing
         >>> phones = pronouncing.phones_for_word("purple")
         >>> pronouncing.rhyming_part(phones[0])
-        u'ER1 P AH0 L'
+        'ER1 P AH0 L'
 
     :param phones: a string containing space-separated CMUdict phones
     :returns: a string with just the "rhyming part" of those phones
@@ -163,7 +163,7 @@ def search(pattern):
     .. doctest::
 
         >>> import pronouncing
-        >>> u'interpolate' in pronouncing.search('ER1 P AH0')
+        >>> 'interpolate' in pronouncing.search('ER1 P AH0')
         True
 
     :param pattern: a string containing a regular expression
@@ -187,7 +187,7 @@ def search_stresses(pattern):
 
         >>> import pronouncing
         >>> pronouncing.search_stresses('020120')
-        [u'gubernatorial']
+        ['gubernatorial']
 
     :param pattern: a string containing a regular expression
     :returns: a list of matching words
@@ -210,7 +210,7 @@ def rhymes(word):
 
         >>> import pronouncing
         >>> pronouncing.rhymes("conditioner")
-        [u'commissioner', u'parishioner', u'petitioner', u'practitioner']
+        ['commissioner', 'parishioner', 'petitioner', 'practitioner']
 
     :param word: a word
     :returns: a list of rhyming words
