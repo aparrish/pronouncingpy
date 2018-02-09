@@ -163,8 +163,8 @@ def search(pattern):
     .. doctest::
 
         >>> import pronouncing
-        >>> pronouncing.search('ER1 P AH0')
-        [u'interpolate', u'interpolated', u'purple', u'purples']
+        >>> u'interpolate' in pronouncing.search('ER1 P AH0')
+        True
 
     :param pattern: a string containing a regular expression
     :returns: a list of matching words
