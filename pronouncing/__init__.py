@@ -27,10 +27,8 @@ def parse_cmu(cmufh):
         line = line.strip().decode('utf-8')
         if line.startswith(';'):
             continue
-        parts = line.split(" ")
-        word = parts[0]
-        phones = parts[1:]
-        pronunciations.append((word.split('(', 1)[0].lower(), " ".join(phones)))
+        word, phones = line.split(" ", maxsplit=1)
+        pronunciations.append((word.split('(', 1)[0].lower(), phones))
     return pronunciations
 
 
