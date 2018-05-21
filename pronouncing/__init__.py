@@ -94,7 +94,7 @@ def phones_for_word(find):
     :returns: a list of phone strings that correspond to that word.
     """
     init_cmu()
-    return lookup.get(find, [])
+    return lookup.get(find.lower(), [])
 
 
 def stresses(s):
