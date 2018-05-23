@@ -34,6 +34,11 @@ ADOLESCENT(1)  AE2 D OW0 L EH1 S AH0 N T
         phones = pronouncing.phones_for_word("asdfasdfasdf")
         self.assertEqual(phones, [])
 
+    def test_phones_for_word_uppercase(self):
+        phones = pronouncing.phones_for_word("CONFLICTS")
+        self.assertEqual(len(phones), 4)
+        self.assertEqual(phones[0], "K AH0 N F L IH1 K T S")
+
     def test_rhyming_part(self):
         part = pronouncing.rhyming_part("S L IY1 P ER0")
         self.assertEqual(part, "IY1 P ER0")
@@ -75,6 +80,10 @@ ADOLESCENT(1)  AE2 D OW0 L EH1 S AH0 N T
 
     def test_stresses_for_word(self):
         stresses = pronouncing.stresses_for_word('permit')
+        self.assertEqual(['01', '12'], stresses)
+
+    def test_stresses_for_word_uppercase(self):
+        stresses = pronouncing.stresses_for_word('PERMIT')
         self.assertEqual(['01', '12'], stresses)
 
     def test_search_stresses(self):
