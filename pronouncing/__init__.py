@@ -2,6 +2,7 @@ from __future__ import print_function
 import re
 from pkg_resources import resource_stream
 import collections
+import cmudict
 
 __author__ = 'Allison Parrish'
 __email__ = 'allison@decontextualize.com'
@@ -23,10 +24,10 @@ def parse_cmu(cmufh):
     """
     pronunciations = list()
     for line in cmufh:
-        line = line.strip().decode('latin1')
+        line = line.strip().decode('utf-8')
         if line.startswith(';'):
             continue
-        word, phones = line.split("  ")
+        word, phones = line.split(" ", 1)
         pronunciations.append((word.split('(', 1)[0].lower(), phones))
     return pronunciations
 
@@ -46,7 +47,7 @@ def init_cmu(filehandle=None):
     global pronunciations, lookup, rhyme_lookup
     if pronunciations is None:
         if filehandle is None:
-            filehandle = resource_stream(__name__, 'cmudict-0.7b')
+            filehandle = cmudict.dict_stream()
         pronunciations = parse_cmu(filehandle)
         filehandle.close()
         lookup = collections.defaultdict(list)

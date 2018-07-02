@@ -61,9 +61,9 @@ ADOLESCENT(1)  AE2 D OW0 L EH1 S AH0 N T
     def test_rhymes(self):
         rhymes = pronouncing.rhymes("sleekly")
         expected = [
-            'beakley', 'biweekly', 'bleakley', 'meekly', 'obliquely',
-            'steakley', 'szekely', 'uniquely', 'weakley', 'weakly',
-            'weekley', 'weekly', 'yeakley']
+            'beakley', 'bi-weekly', 'biweekly', 'bleakley', 'meekly',
+            'obliquely', 'steakley', 'szekely', 'uniquely', 'weakley',
+            'weakly', 'weekley', 'weekly', 'yeakley']
         self.assertEqual(expected, rhymes)
         # ensure correct behavior for words that don't rhyme
         rhymes = pronouncing.rhymes("orange")
@@ -102,8 +102,9 @@ ADOLESCENT(1)  AE2 D OW0 L EH1 S AH0 N T
         self.assertEqual(words, ['AH0', 'EY1'])
 
     def test_a42128(self):
+        # This is not in the newer cmudict set
         words = pronouncing.phones_for_word('a42128')
-        self.assertEqual(words, ['EY1 F AO1 R T UW1 W AH1 N T UW1 EY1 T'])
+        self.assertEqual(words, [])
 
 
 if __name__ == '__main__':
