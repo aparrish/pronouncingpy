@@ -38,10 +38,7 @@ You can also download the source code and install manually::
 License
 -------
 
-The Python code in this module is distributed with a BSD license. A full copy
-of the CMU Pronouncing Dictionary is included in this distribution. Learn
-more about the CMU Pronouncing Dictionary here:
-http://www.speech.cs.cmu.edu/cgi-bin/cmudict
+The Python code in this module is distributed with a BSD license.
 
 Acknowledgements
 ----------------
