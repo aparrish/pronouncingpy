@@ -3,6 +3,13 @@
 History
 =======
 
+0.2.0 (2018-07-01)
+------------------
+
+* Removed dictionary data from this package in favor of a dependency on David
+  L. Day's very nice cmudict package.
+* Many fixes and improvements from hugovk (thanks!)
+
 0.1.5 (2017-04-13)
 ------------------
 

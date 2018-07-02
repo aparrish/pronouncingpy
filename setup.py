@@ -15,7 +15,7 @@ with open('HISTORY.rst') as history_file:
     history = history_file.read().replace('.. :changelog:', '')
 
 requirements = [
-    # TODO: put package requirements here
+    'cmudict>=0.4.0'
 ]
 
 test_requirements = [
@@ -24,7 +24,7 @@ test_requirements = [
 
 setup(
     name='pronouncing',
-    version='0.1.5',
+    version='0.2.0',
     description="A simple interface for the CMU pronouncing dictionary",
     long_description=readme + '\n\n' + history,
     author="Allison Parrish",
@@ -35,7 +35,6 @@ setup(
     ],
     package_dir={'pronouncing':
                  'pronouncing'},
-    package_data={'pronouncing': ['cmudict-0.7b']},
     install_requires=requirements,
     license="BSD",
     zip_safe=True,
