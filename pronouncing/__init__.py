@@ -1,4 +1,5 @@
 from __future__ import print_function
+from itertools import chain
 import re
 from pkg_resources import resource_stream
 import collections
@@ -217,8 +218,13 @@ def rhymes(word):
     :returns: a list of rhyming words
     """
     phones = phones_for_word(word)
-    if len(phones) > 0:
-        return [w for w in rhyme_lookup.get(rhyming_part(phones[0]), [])
-                if w != word]
+    combined_rhymes = []
+    if phones:
+        for element in phones:
+            combined_rhymes.append([w for w in rhyme_lookup.get(rhyming_part(
+                                    element), []) if w != word])
+        combined_rhymes = list(chain.from_iterable(combined_rhymes))
+        combined_rhymes.sort()
+        return combined_rhymes
     else:
         return []
