@@ -225,7 +225,7 @@ def rhymes(word):
                                     element), []) if w != word])
         combined_rhymes = list(chain.from_iterable(combined_rhymes))
         combined_rhymes.sort()
-                unique_combined_rhymes = set(combined_rhymes)
+        unique_combined_rhymes = set(combined_rhymes)
         return list(unique_combined_rhymes)
     else:
         return []
