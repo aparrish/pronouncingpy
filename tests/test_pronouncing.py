@@ -65,6 +65,16 @@ ADOLESCENT(1)  AE2 D OW0 L EH1 S AH0 N T
             'obliquely', 'steakley', 'szekely', 'uniquely', 'weakley',
             'weakly', 'weekley', 'weekly', 'yeakley']
         self.assertEqual(expected, rhymes)
+        # ensure correct behavior for words that have multiple pronunciations
+        rhymes = pronouncing.rhymes("dove")
+        expected = [
+            "above", "belove", "boeve", "bove", "clove", "cove",
+		    "deneuve", "drove", "glove", "gov", "gove", "grove",
+		    "hove", "labauve", "labov", "labove", "love", "nov",
+		    "o'glove", "of", "rove", "shove", "soave", "stove",
+            "strove", "thereof", "throve", "tov", "trove", "vanhove",
+		    "wove"]
+        self.assertEqual([], rhymes)
         # ensure correct behavior for words that don't rhyme
         rhymes = pronouncing.rhymes("orange")
         self.assertEqual([], rhymes)
