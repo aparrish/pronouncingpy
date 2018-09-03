@@ -74,7 +74,7 @@ ADOLESCENT(1)  AE2 D OW0 L EH1 S AH0 N T
 		    "o'glove", "of", "rove", "shove", "soave", "stove",
             "strove", "thereof", "throve", "tov", "trove", "vanhove",
 		    "wove"]
-        self.assertEqual([], rhymes)
+        self.assertEqual(expected, rhymes)
         # ensure correct behavior for words that don't rhyme
         rhymes = pronouncing.rhymes("orange")
         self.assertEqual([], rhymes)
