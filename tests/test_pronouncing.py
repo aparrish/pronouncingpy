@@ -58,16 +58,32 @@ ADOLESCENT(1)  AE2 D OW0 L EH1 S AH0 N T
                              'diminishing', 'elicited', 'miscibility',
                              'primitivistic', 'privileges'])
 
-    def test_rhymes(self):
+    def test_rhymes_for_single_pronunciation(self):
         rhymes = pronouncing.rhymes("sleekly")
         expected = [
             'beakley', 'bi-weekly', 'biweekly', 'bleakley', 'meekly',
             'obliquely', 'steakley', 'szekely', 'uniquely', 'weakley',
             'weakly', 'weekley', 'weekly', 'yeakley']
         self.assertEqual(expected, rhymes)
+        
+    def test_rhymes_for_multi_pronunciation(self):   
+        # ensure correct behavior for words that have multiple pronunciations
+        rhymes = pronouncing.rhymes("dove")
+        expected = [
+            "above", "belove", "boeve", "bove", "clove", "cove",
+            "deneuve", "drove", "glove", "gov", "gove", "grove",
+            "hove", "labauve", "labov", "labove", "love", "nov",
+            "o'glove", "of", "rove", "shove", "soave", "stove",
+            "strove", "thereof", "throve", "tov", "trove", "vanhove",
+            "wove"]
+        self.assertEqual(expected, rhymes)
+       
+    def test_rhymes_for_non_rhyming(self):
         # ensure correct behavior for words that don't rhyme
         rhymes = pronouncing.rhymes("orange")
         self.assertEqual([], rhymes)
+        
+    def test_rhymes_for_out_of_vocab(self):
         # ensure correct behavior for OOV words
         rhymes = pronouncing.rhymes("qwerasdfzxcv")
         self.assertEqual([], rhymes)
