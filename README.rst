@@ -47,3 +47,7 @@ This package was originally developed as part of my Spring 2015 research
 fellowship at `ITP <http://itp.nyu.edu/itp/>`_. Thank you to the program and
 its students for their interest and support!
 
+See also
+--------
+
+* [pronouncing-js](https://github.com/aparrish/pronouncingjs): A simple JavaScript interface for Node.js and browser
