@@ -1,7 +1,6 @@
 from __future__ import print_function
 from itertools import chain
 import re
-from pkg_resources import resource_stream
 import collections
 import cmudict
 
@@ -29,6 +28,7 @@ def parse_cmu(cmufh):
         if line.startswith(';'):
             continue
         word, phones = line.split(" ", 1)
+        phones = phones.split("#", 1)[0].strip()  # Remove comments
         pronunciations.append((word.split('(', 1)[0].lower(), phones))
     return pronunciations
 

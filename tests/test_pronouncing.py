@@ -65,8 +65,8 @@ ADOLESCENT(1)  AE2 D OW0 L EH1 S AH0 N T
             'obliquely', 'steakley', 'szekely', 'uniquely', 'weakley',
             'weakly', 'weekley', 'weekly', 'yeakley']
         self.assertEqual(expected, rhymes)
-        
-    def test_rhymes_for_multi_pronunciation(self):   
+
+    def test_rhymes_for_multi_pronunciation(self):
         # ensure correct behavior for words that have multiple pronunciations
         rhymes = pronouncing.rhymes("dove")
         expected = [
@@ -77,12 +77,12 @@ ADOLESCENT(1)  AE2 D OW0 L EH1 S AH0 N T
             "strove", "thereof", "throve", "tov", "trove", "vanhove",
             "wove"]
         self.assertEqual(expected, rhymes)
-       
+
     def test_rhymes_for_non_rhyming(self):
         # ensure correct behavior for words that don't rhyme
         rhymes = pronouncing.rhymes("orange")
         self.assertEqual([], rhymes)
-        
+
     def test_rhymes_for_out_of_vocab(self):
         # ensure correct behavior for OOV words
         rhymes = pronouncing.rhymes("qwerasdfzxcv")
@@ -121,6 +121,10 @@ ADOLESCENT(1)  AE2 D OW0 L EH1 S AH0 N T
         # This is not in the newer cmudict set
         words = pronouncing.phones_for_word('a42128')
         self.assertEqual(words, [])
+
+    def test_no_comments_in_phones(self):
+        phones = pronouncing.phones_for_word('danglar')
+        self.assertEqual(phones, ['D AH0 NG L AA1 R'])
 
 
 if __name__ == '__main__':
