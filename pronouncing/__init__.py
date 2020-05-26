@@ -1,6 +1,5 @@
 from itertools import chain
 import re
-from pkg_resources import resource_stream
 import collections
 import cmudict
 
