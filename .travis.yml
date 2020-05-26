@@ -4,12 +4,10 @@ language: python
 
 python:
   - "pypy3"
-  - "pypy"
   - "3.8"
   - "3.7"
   - "3.6"
   - "3.5"
-  - "2.7"
 
 # command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
 install:
@@ -19,7 +17,7 @@ install:
 # command to run tests, e.g. python setup.py test
 script:
   - coverage run --source pronouncing setup.py test --verbose
-  - if [[ $TRAVIS_PYTHON_VERSION == 3* ]]; then python -m doctest pronouncing/__init__.py; fi
+  - python -m doctest pronouncing/__init__.py
 
 after_success:
 - pip install coveralls
