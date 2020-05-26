@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 #
 # pronouncing documentation build configuration file, created by
 # sphinx-quickstart on Tue Jul  9 22:26:36 2013.
@@ -56,8 +55,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'pronouncing'
-copyright = u'2015, Allison Parrish'
+project = 'pronouncing'
+copyright = '2015, Allison Parrish'
 
 # The version info for the project you're documenting, acts as replacement
 # for |version| and |release|, also used in various other places throughout
@@ -210,8 +209,8 @@ latex_elements = {
 # [howto/manual]).
 latex_documents = [
     ('index', 'pronouncing.tex',
-     u'pronouncing Documentation',
-     u'Allison Parrish', 'manual'),
+     'pronouncing Documentation',
+     'Allison Parrish', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at
@@ -241,8 +240,8 @@ latex_documents = [
 # (source start file, name, description, authors, manual section).
 man_pages = [
     ('index', 'pronouncing',
-     u'pronouncing Documentation',
-     [u'Allison Parrish'], 1)
+     'pronouncing Documentation',
+     ['Allison Parrish'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -256,8 +255,8 @@ man_pages = [
 #  dir menu entry, description, category)
 texinfo_documents = [
     ('index', 'pronouncing',
-     u'pronouncing Documentation',
-     u'Allison Parrish',
+     'pronouncing Documentation',
+     'Allison Parrish',
      'pronouncing',
      'One line description of project.',
      'Miscellaneous'),

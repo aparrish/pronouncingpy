@@ -52,7 +52,7 @@ ADOLESCENT(1)  AE2 D OW0 L EH1 S AH0 N T
         self.assertEqual(matches,
                          ['sclafani', 'scleroderma', 'sclerosis', 'sklar',
                              'sklenar'])
-        matches = pronouncing.search('IH. \w* IH. \w* IH. \w* IH.')
+        matches = pronouncing.search(r'IH. \w* IH. \w* IH. \w* IH.')
         self.assertEqual(matches,
                          ['definitive', 'definitively', 'diminishes',
                              'diminishing', 'elicited', 'miscibility',
