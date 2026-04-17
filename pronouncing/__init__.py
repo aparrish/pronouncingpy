@@ -6,7 +6,7 @@ import cmudict
 
 __author__ = 'Allison Parrish'
 __email__ = 'allison@decontextualize.com'
-__version__ = '0.2.0'
+__version__ = '0.3.0'
 
 pronunciations = None
 lookup = None
