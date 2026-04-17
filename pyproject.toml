@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pronouncing"
+version = "0.3.0"
+authors = [
+  { name="Allison Parrish", email="allison@decontextualize.com" },
+]
+description = "A simple interface for the CMU pronouncing dictionary"
+readme = "README.rst"
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "Natural Language :: English",
+    "Topic :: Artistic Software",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+dependencies = [
+    "cmudict>=0.4.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/aparrish/pronouncingpy/"
+

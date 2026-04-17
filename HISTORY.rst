@@ -3,6 +3,14 @@
 History
 =======
 
+0.3.0 (2026-04-16)
+------------------
+
+* Cleaned up some references to build infrastructure that no longer exists
+* Removed reference to deprecated pkg_resources package
+* Migrated to modern packaging tools
+* Various other tiny tweaks
+
 0.2.0 (2018-07-01)
 ------------------
 

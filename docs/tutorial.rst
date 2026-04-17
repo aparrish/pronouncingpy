@@ -13,7 +13,7 @@ Here's the code::
 
     >>> import pronouncing
     >>> pronouncing.phones_for_word("permit")
-    [u'P ER0 M IH1 T', u'P ER1 M IH2 T']
+    ['P ER0 M IH1 T', 'P ER1 M IH2 T']
 
 The :func:`pronouncing.phones_for_word` function returns a list of all
 pronunciations for the given word found in the CMU pronouncing dictionary.
@@ -48,7 +48,7 @@ Here's how to calculate the most common sounds in a given text::
     ...     count.update(pronunciation_list[0].split(" "))
     ... 
     >>> count.most_common(5)
-    [(u'AH0', 4), (u'L', 4), (u'D', 3), (u'R', 3), (u'DH', 2)]
+    [('AH0', 4), ('L', 4), ('D', 3), ('R', 3), ('DH', 2)]
 
 Pronunciation search
 --------------------
@@ -61,7 +61,7 @@ the same sounds as the word "sighs"::
     >>> import pronouncing
     >>> phones = pronouncing.phones_for_word("sighs")[0]
     >>> pronouncing.search(phones)[:5]
-    [u'incise', u'incised', u'incisor', u'incisors', u'malloseismic']
+    ['incise', 'incised', 'incisor', 'incisors', 'malloseismic']
 
 For convenience, word-boundary anchors (``\b``) are added automatically to the
 beginning and end of the pattern you pass to :func:`pronouncing.search`. You're
@@ -69,7 +69,7 @@ free to include any other regular expression syntax in the pattern. Here's
 another example, which finds all of the words that end in "-iddle"::
 
     >>> pronouncing.search("IH1 D AH0 L$")[:5]
-    [u'biddle', u'criddle', u'fiddle', u'friddle', u'kiddle']
+    ['biddle', 'criddle', 'fiddle', 'friddle', 'kiddle']
 
 Another example, which re-writes a text by taking each word and replacing it
 with a random word that begins with the same first two phones::
@@ -83,7 +83,7 @@ with a random word that begins with the same first two phones::
     ...   first2 = phones.split()[:2]
     ...   out.append(random.choice(pronouncing.search("^" + " ".join(first2))))
     ... 
-    >>> print ' '.join(out)
+    >>> print(' '.join(out))
     apec's isn't them kraatz muffy bronte leichliter outpacing of than delfs
 
 Counting syllables
@@ -118,7 +118,7 @@ phones::
     >>> import pronouncing
     >>> phones_list = pronouncing.phones_for_word("snappiest")
     >>> pronouncing.stresses(phones_list[0])
-    u'102'
+    '102'
 
 A "stress pattern" is a string that contains only the stress values from a
 sequence of phones. (The numbers indicate the level of stress: ``1`` for
@@ -131,7 +131,7 @@ two unstressed syllables)::
 
     >>> import pronouncing
     >>> pronouncing.search_stresses("100100")
-    [u'afroamerican', u'afroamericans', u'interrelationship', u'overcapacity']
+    ['afroamerican', 'afroamericans', 'interrelationship', 'overcapacity']
 
 You can use regular expression syntax inside of the patterns you give to
 :func:`pronouncing.search_stresses`. For example, to find all words wholly
@@ -140,7 +140,7 @@ meaning either primary stress or secondary stress::
 
     >>> import pronouncing
     >>> pronouncing.search_stresses("^00[12]00[12]$")
-    [u'neopositivist', u'undercapitalize', u'undercapitalized']
+    ['neopositivist', 'undercapitalize', 'undercapitalized']
 
 The following example rewrites a text, replacing each word with a random word
 that has the same stress pattern::
@@ -166,7 +166,7 @@ it like so::
 
     >>> import pronouncing
     >>> pronouncing.rhymes("failings")
-    [u'mailings', u'railings', u'tailings']
+    ['mailings', 'railings', 'tailings']
 
 The :func:`pronouncing.rhymes` function returns a list of all possible rhymes
 for the given word---i.e., words that rhyme with any of the given word's
@@ -181,9 +181,9 @@ different pronunciations of "uses"::
     >>> sss = pronouncing.rhyming_part(pronunciations[0])
     >>> zzz = pronouncing.rhyming_part(pronunciations[1])
     >>> pronouncing.search(sss + "$")[:5]
-    [u"bruce's", u'juices', u'medusas', u'produces', u"tuscaloosa's"]
+    ["bruce's", 'juices', 'medusas', 'produces', "tuscaloosa's"]
     >>> pronouncing.search(zzz + "$")[:5]
-    [u'abuses', u'cabooses', u'disabuses', u'excuses', u'induces']
+    ['abuses', 'cabooses', 'disabuses', 'excuses', 'induces']
 
 Use the ``in`` operator to check to see if one word rhymes with another::
 
@@ -207,7 +207,7 @@ word (when a rhyming word is available)::
     ...   else:
     ...     out.append(word)
     ... 
-    >>> print ' '.join(out)
+    >>> print(' '.join(out))
     april wiles's duh coolest month ceding pontiac's krout what've worthey wehde
 
 Next steps

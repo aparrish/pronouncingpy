@@ -31,10 +31,6 @@ Install with pip like so::
 
     pip install pronouncing
 
-You can also download the source code and install manually::
-
-    python setup.py install
-
 Contents
 --------
 
